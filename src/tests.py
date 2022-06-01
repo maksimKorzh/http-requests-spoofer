@@ -1,8 +1,3 @@
-# HTTP requests spoofer: random proxies & user agents
-Most common freely available web scraping techniques wrapping around python requests library
-
-# How to use it
-```python
 # import library & dependencies
 from scraper import *
 
@@ -40,24 +35,4 @@ print('Testing proxies:')
 for i in range(10):
     try: print(scraper.GET('https://api.ipify.org?format=json').text)
     except: print('Failed')
-```
-
-# How it works?
-    1. Before making an HTTP request to a desired URL it
-       first treis to download a list of free proxies from
-       https://free-proxy-list.net/
-       choosing only elite proxies with HTTPS support
-
-    2. It tests newly scraped proxies with a 1 sec timeout
-       and if the proxy is alive it gets appended to a list
-    
-    3. Finally it randomly picks up a proxy from a list and
-       uses it. If proxy fails for some reason your original IP
-       is used instead.
-
-# How to bypass CAPTCHA (rhetoric question)?
-    Try not to fall into one or better buy 
-    a paid API subscription from the target website
-    to fetch the data legally ;)
-
 

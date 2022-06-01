@@ -1,10 +1,11 @@
 ########################################################
 #
-#       HTTP requests 
+#                  HTTP requests spoofer:
+#              random proxies & user agents
 #
-#                          by
+#                           by
 #
-#                   Code Monkey King
+#                    Code Monkey King
 #
 ########################################################
 
@@ -24,9 +25,10 @@ class Scraper():
     }
     
     # init
-    def __init__(self, use_proxy=True, tries=5, delay=0):
+    def __init__(self, use_proxy=True, spoof_agent=True, tries=5, delay=0):
         # init params
         self.use_proxy = use_proxy
+        self.spoof_agent = spoof_agent
         self.tries = tries
         self.delay = delay
         
@@ -82,20 +84,14 @@ class Scraper():
         # return random proxy if found, try again otherwise
         if len(proxies): return random.choice(proxies)
         else: self.get_random_proxy(tries - 1)
-
-    # test proxies
-    def test_requests(self):
-        for i in range(10):
-            try: print(self.GET('https://api.ipify.org?format=json').text)
-            except: print('Failed')
     
-    # crawler's entry
+    # HTTP GET request
     def GET(self, url):        
         # delay before request
         time.sleep(self.delay)
         
         # rotate user agent
-        self.headers['user-agent'] = self.get_random_agent()
+        if self.spoof_agent: self.headers['user-agent'] = self.get_random_agent()
         
         try:
             # get random proxy
@@ -115,11 +111,30 @@ class Scraper():
                 headers=self.headers,
             )
 
-# demo
-if __name__ == '__main__':
-    # create scraper instance
-    scraper = Scraper()
-    
-    # run tests
-    scraper.test_requests()
+    # HTTP GET request
+    def POST(self, url, body):        
+        # delay before request
+        time.sleep(self.delay)
+        
+        # rotate user agent
+        if self.spoof_agent: self.headers['user-agent'] = self.get_random_agent()
+        
+        try:
+            # get random proxy
+            random_proxy = self.get_random_proxy(self.tries) if self.use_proxy is True else {}
 
+            # crawl next postcode URL
+            return requests.post(
+                url=url,
+                headers=self.headers,
+                data=body,
+                proxies=random_proxy
+            )
+
+        except Exception as e:
+            # crawl next postcode URL
+            return requests.get(
+                url=url,
+                headers=self.headers,
+                data=body
+            )
