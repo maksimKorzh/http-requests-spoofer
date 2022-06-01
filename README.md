@@ -8,15 +8,15 @@ Freely available & most common web scraping techniques intended to bypass simple
 
 # How it works?
     1. It first tries to download a list of free proxies from
-       https://free-proxy-list.net/
-       choosing only elite proxies with HTTPS support
-       before making an HTTP request to a desired URL.
+       https://free-proxy-list.net/ retrying a user defined number
+       of times on fail and then choosing only elite proxies with
+       HTTPS support.
 
     2. Then it tests newly scraped proxies with a 1 sec timeout
        and if the proxy is alive it gets appended to a list.
     
     3. Finally it randomly picks up a proxy from a list and
-       uses it along with a request to the target URL.
+       uses it to make a request to the target URL.
        If proxy fails for some reason original IP is used instead.
 
 # How to use it
@@ -59,10 +59,5 @@ for i in range(10):
     try: print(scraper.GET('https://api.ipify.org?format=json').text)
     except: print('Failed')
 ```
-
-# How to bypass CAPTCHA (rhetoric question)?
-    Try not to fall into one or better buy 
-    a paid API subscription from the target website
-    to fetch the data legally ;)
 
 
