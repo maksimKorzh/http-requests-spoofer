@@ -1,5 +1,5 @@
-# HTTP requests spoofer: random proxies & user agents
-Most common freely available web scraping techniques wrapping around python requests library
+# HTTP requests spoofer
+Freely available & most common web scraping techniques wrapping around python requests library
 
 # How to use it
 ```python
@@ -42,14 +42,18 @@ for i in range(10):
     except: print('Failed')
 ```
 
+# What is this?
+    It's a library that allows making HTTP GET & POST requests
+    via proxy meanwhile spoofing the user agent header.
+
 # How it works?
     1. Before making an HTTP request to a desired URL it
        first treis to download a list of free proxies from
        https://free-proxy-list.net/
-       choosing only elite proxies with HTTPS support
+       choosing only elite proxies with HTTPS support.
 
     2. It tests newly scraped proxies with a 1 sec timeout
-       and if the proxy is alive it gets appended to a list
+       and if the proxy is alive it gets appended to a list.
     
     3. Finally it randomly picks up a proxy from a list and
        uses it. If proxy fails for some reason your original IP
