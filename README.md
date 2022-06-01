@@ -47,17 +47,17 @@ for i in range(10):
     via proxy meanwhile spoofing the user agent header.
 
 # How it works?
-    1. Before making an HTTP request to a desired URL it
-       first treis to download a list of free proxies from
+    1. It first tries to download a list of free proxies from
        https://free-proxy-list.net/
-       choosing only elite proxies with HTTPS support.
+       choosing only elite proxies with HTTPS support
+       before making an HTTP request to a desired URL.
 
-    2. It tests newly scraped proxies with a 1 sec timeout
+    2. Then it tests newly scraped proxies with a 1 sec timeout
        and if the proxy is alive it gets appended to a list.
     
     3. Finally it randomly picks up a proxy from a list and
-       uses it. If proxy fails for some reason your original IP
-       is used instead.
+       uses it along with a request to the target URL.
+       If proxy fails for some reason original IP is used instead.
 
 # How to bypass CAPTCHA (rhetoric question)?
     Try not to fall into one or better buy 
