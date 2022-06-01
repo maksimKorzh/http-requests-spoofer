@@ -1,5 +1,5 @@
 # HTTP requests spoofer
-Freely available & most common web scraping techniques wrapping around python requests library
+Freely available & most common web scraping techniques implemented to bypass simple anti-scraping measures bundled into a single class with a dead simple interface
 
 # How to use it
 ```python
