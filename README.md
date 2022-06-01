@@ -1,9 +1,10 @@
 # HTTP requests spoofer
-Freely available & most common web scraping techniques implemented to bypass simple anti-scraping measures bundled into a single class with a dead simple interface
+Freely available & most common web scraping techniques intended to bypass simple anti-scraping measures.
 
 # What is this?
-    It's a library that allows making HTTP GET & POST requests
-    via random free proxy meanwhile spoofing the user agent header.
+    It's a library with a dead simple interface that
+    allows making HTTP GET & POST requests via random
+    free proxy meanwhile spoofing the user agent header.
 
 # How it works?
     1. It first tries to download a list of free proxies from
